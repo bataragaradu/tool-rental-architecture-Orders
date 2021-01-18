@@ -1,0 +1,9 @@
+spring.datasource:
+  orders:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    username: postgres
+    password: changeme
+
+spring.jpa:
+  show-sql: true
+  hibernate.ddl-auto: none

@@ -1,0 +1,6 @@
+{
+  "invokerPackage" : "com.rb.innovative.client",
+  "basePackage" : "com.rb.innovative.client",
+  "apiPackage" : "com.rb.innovative.client.controller",
+  "modelPackage": "com.rb.innovative.client.model"
+}

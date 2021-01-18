@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Vat verifier API
+  description: A simple API that queries the company for vat compliance
+
+servers:
+  - url: https://example.io/v1
+
+
+security:
+  - BasicAuth: []
+
+paths:
+  /orders:
+    get:
+      description: Returns a list of artists
+      #  ----- Added lines  ----------------------------------------
+      responses:
+        '200':
+          description: Successfully returned a list of artists
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref:  '#/components/schemas/Order'
+#                type: array
+#                items:
+#                  type: object
+#                  "$$ref": "#/definitions/Item"
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+# Basic authentication
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    # Schema for error response body
+    Artist:
+      type: object
+      required:
+        - username
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        userId:
+          type: string
+        toolId:
+          type: string
+        startDate:
+          type: date
+        endDate:
+          type: date
