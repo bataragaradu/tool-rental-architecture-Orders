@@ -12,14 +12,13 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message = "First Name cannot be null")
     private Integer id;
     @Column(name = "[status]")
     private String status;
     @Column(name = "[user_id]")
     private String userId;
     @Column(name = "[tool_id]")
-    private String toolId;
+    private Integer toolId;
     @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "[start_date]")
     private LocalDate startDate;
@@ -57,11 +56,11 @@ public class Orders {
         return this;
     }
 
-    public String getToolId() {
+    public Integer getToolId() {
         return toolId;
     }
 
-    public Orders setToolId(String toolId) {
+    public Orders setToolId(Integer toolId) {
         this.toolId = toolId;
         return this;
     }

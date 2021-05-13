@@ -1,8 +1,8 @@
 package com.rbinnovative.orders.service;
 
+import com.rb.innovative.client.model.Order;
 import com.rbinnovative.orders.repository.OrdersRepository;
 import com.rbinnovative.orders.exception.OrderException;
-import com.rbinnovative.orders.model.request.OrderRequest;
 import com.rbinnovative.orders.model.dao.Orders;
 import com.rbinnovative.orders.model.dto.OrdersDTO;
 import com.rbinnovative.orders.utils.Utils;
@@ -39,10 +39,12 @@ public class OrdersProcessorImpl implements TransactionProcessor {
     }
 
     @Override
-    public OrdersDTO createOrder(OrderRequest orderRequest) {
+    public Order createOrder(Order orderRequest) {
         Orders createOrders = processOrderCreation(orderRequest);
         createOrders = ordersRepository.save(createOrders);
-        return mapToOrdersDTOHandler(createOrders, null);
+        Order resultOrder = new Order();
+        BeanUtils.copyProperties(createOrders, resultOrder);
+        return  resultOrder;
     }
 
     @Override
@@ -67,7 +69,7 @@ public class OrdersProcessorImpl implements TransactionProcessor {
         return orderDTO;
     }
 
-    private Orders processOrderCreation(OrderRequest orderRequest) {
+    private Orders processOrderCreation(Order orderRequest) {
         Orders createOrder = new Orders();
         BeanUtils.copyProperties(orderRequest, createOrder);
         //Particular request entities

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = Constants.TOOLS_ENDPOINT, method = RequestMethod.GET)
+@RequestMapping(value = Constants.ORDERS_ENDPOINT, method = RequestMethod.GET)
 public class OrdersQueryController {
 
     private Logger logger = LoggerFactory.getLogger(OrdersQueryController.class);

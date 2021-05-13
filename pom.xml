@@ -19,6 +19,7 @@
     <modules>
         <module>orders-server</module>
         <module>orders-client</module>
+        <module>orders-contract</module>
     </modules>
 
 </project>

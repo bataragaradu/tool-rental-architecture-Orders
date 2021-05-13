@@ -1,5 +1,6 @@
+server.port: 8093
 spring.datasource:
-  orders:
+  tools:
     url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: postgres
     password: changeme

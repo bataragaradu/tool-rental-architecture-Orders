@@ -1,7 +1,7 @@
 package com.rbinnovative.orders.service;
 
+import com.rb.innovative.client.model.Order;
 import com.rbinnovative.orders.model.dto.OrdersDTO;
-import com.rbinnovative.orders.model.request.OrderRequest;
 import com.rbinnovative.orders.exception.OrderException;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public interface TransactionProcessor {
 
     List<OrdersDTO> processAllQuery();
 
-    OrdersDTO createOrder(OrderRequest orderRequest);
+    Order createOrder(Order orderRequest);
 
     //    @Override
     //    public OrderDTO updateParameter(Integer id, OrderRequest invoiceRequest) throws OrderException, BillerException {

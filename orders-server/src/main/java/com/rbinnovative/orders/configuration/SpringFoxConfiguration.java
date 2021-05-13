@@ -1,7 +1,10 @@
 package com.rbinnovative.orders.configuration;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.PathSelectors;
@@ -13,6 +16,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Configuration
 public class SpringFoxConfiguration extends WebMvcConfigurerAdapter {
+
+
+//    @Bean
+//    @Primary
+//    public Jackson2ObjectMapperBuilder objectMapperBuilder() {
+//        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+//        return builder.modulesToInstall(new JavaTimeModule());
+//    }
+
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2).select()

@@ -1,7 +1,7 @@
 package com.rbinnovative.orders.controller;
 
+import com.rb.innovative.client.model.Order;
 import com.rbinnovative.orders.exception.OrderException;
-import com.rbinnovative.orders.model.request.OrderRequest;
 import com.rbinnovative.orders.service.OrdersProcessorImpl;
 import com.rbinnovative.orders.utils.Constants;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = Constants.TOOLS_ENDPOINT)
+@RequestMapping(value = Constants.ORDERS_ENDPOINT)
 public class OrdersModifierController {
 
 	private final Logger logger = LoggerFactory.getLogger(OrdersModifierController.class);
@@ -34,7 +34,7 @@ public class OrdersModifierController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Save a new order"),
 			@ApiResponse(code = 400, message = " order already exists with that key could not be found")})
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> saveOrder(@Valid @RequestBody OrderRequest orderRequest) throws OrderException {
+	public ResponseEntity<String> saveOrder(@Valid @RequestBody Order orderRequest) throws OrderException {
 
 		logger.info("Save a new order {}", orderRequest);
 		Integer OrderId = ordersProcessor.createOrder(orderRequest).getId();
