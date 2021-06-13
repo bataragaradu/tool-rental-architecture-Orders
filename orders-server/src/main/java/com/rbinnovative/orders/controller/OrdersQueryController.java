@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @RestController
@@ -47,15 +49,30 @@ public class OrdersQueryController {
     /**
      * Support for GET /orders endpoint by id
      *
-     * @return invoice by id
+     * @return orders by id
      */
-    @ApiOperation(value = "Query invoice by id")
+    @ApiOperation(value = "Query orders by id")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Success query")})
     @RequestMapping(value = "/{id}", params = {"!fields"})
     public ResponseEntity<OrdersDTO> retrieveOrderById(@PathVariable Integer id) throws OrderException {
-        logger.info("GET invoice with id {}", id);
-        OrdersDTO invoiceDTO = ordersProcessor.processOneQuery(id);
-        logger.info("GET invoice response received {}", invoiceDTO);
-        return ResponseEntity.ok().body(invoiceDTO);
+        logger.info("GET order with id {}", id);
+        OrdersDTO ordersDTO = ordersProcessor.processOneQuery(id);
+        logger.info("GET order response received {}", ordersDTO);
+        return ResponseEntity.ok().body(ordersDTO);
+    }
+
+    /**
+     * Support for GET /orders endpoint by id
+     *
+     * @return order by id
+     */
+    @ApiOperation(value = "Query orders by id")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Success query")})
+    @RequestMapping(params = "userId")
+    public ResponseEntity<List<OrdersDTO>> retrieveOrderByUserId(@QueryParam("userId") String userId) {
+        logger.info("GET order with id {}", userId);
+        List<OrdersDTO> userOrdersDTO = ordersProcessor.retrieveUserOrders(userId);
+        logger.info("GET order response received {}", userOrdersDTO);
+        return ResponseEntity.ok().body(userOrdersDTO);
     }
 }

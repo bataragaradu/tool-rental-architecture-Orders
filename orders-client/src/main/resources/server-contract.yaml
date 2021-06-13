@@ -63,6 +63,29 @@ paths:
                 properties:
                   message:
                     type: string
+  /availability:
+    get:
+      description: Returns a list of artists
+      #  ----- Added lines  ----------------------------------------
+      responses:
+        '200':
+          description: Successfully returned a list of artists
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref:  '#/components/schemas/Order'
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 
 # Basic authentication
 components:

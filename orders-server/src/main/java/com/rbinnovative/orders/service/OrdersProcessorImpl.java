@@ -77,24 +77,8 @@ public class OrdersProcessorImpl implements TransactionProcessor {
     }
 
 
+    public List<OrdersDTO> retrieveUserOrders(String userId) {
+        List<Orders> orders = Optional.ofNullable(ordersRepository.findByUserId(userId)).orElseGet(ArrayList::new);
+        return orders.stream().map((ordersElem) -> mapToOrdersDTOHandler(ordersElem, null)).collect(Collectors.toList());
+    }
 }
-
-//    @Override
-//    public OrderDTO updateParameter(Integer id, OrderRequest invoiceRequest) throws OrderException, BillerException {
-//        Optional<Order> requestUpdateId = Optional.empty();
-//        if (id != null) {
-//            requestUpdateId = invoiceRepository.findById(id);
-//        }
-//        if (requestUpdateId.isPresent()) {
-//            Order updateOrder = requestUpdateId.get();
-//            Utils.copyProperties(invoiceRequest, updateOrder, invoiceRequestFields);
-//            updateOrder.setUpdatedAt(LocalDateTime.now());
-//            updateOrder.setBillerId(extractBillerId(invoiceRequest.getBillerId()));
-//            updateOrder = invoiceRepository.save(updateOrder);
-//            return mapToOrderDTOHandler(updateOrder, null);
-//        } else {
-//            throw new OrderException("The id " + id + " doesn't exist, needs to be created ");
-//        }
-//    }
-//
-
